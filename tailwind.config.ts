@@ -14,6 +14,19 @@ export default {
         plaster_white: '#FEFFFE',
         shamock_green: '#169C55',
         rose_toupe: '#8A575D',
+      },
+      width:{
+        wmiddlebox: '1148px',
+        98:'',
+      },
+      height:{
+        hmiddlebox: '765px',
+        99:'30rem',
+        100: '40rem',
+      },
+      minHeight:{
+        99:'30rem',
+        100: '40rem',
       }
     },
   },
