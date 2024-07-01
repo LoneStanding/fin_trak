@@ -31,6 +31,7 @@ export async function NewUser(){
     await db.insert(users).values({
         uId: String(userId),
         username: String(username),
+        createdAt: new Date(),
     });
 }
 
