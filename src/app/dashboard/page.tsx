@@ -7,8 +7,8 @@ export default async function Dashboard() {
     if (userId) {
     // Query DB for user specific information or display assets only to signed in users
         console.log(`User ${userId}`);
-        LogLogIn();
-        CheckUser(userId);
+        await LogLogIn();
+        await CheckUser(userId);
     }else{
         auth().redirectToSignIn();
     }

@@ -26,7 +26,7 @@ export async function NewUser(){
     }
     
     const user = await currentUser();
-    const username = user?.username || "NULL";
+    const username = user?.username ?? "NULL";
     
     await db.insert(users).values({
         uId: String(userId),
@@ -42,6 +42,6 @@ export async function CheckUser(userId: string) {
         //Do Nothing
         console.log(`This is res : ${res.createdAt}`);
     }else{
-        NewUser();
+        await NewUser();
     }
 }   
