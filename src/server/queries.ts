@@ -31,7 +31,6 @@ export async function NewUser(){
     await db.insert(users).values({
         uId: String(userId),
         username: String(username),
-        createdAt: new Date(),
     });
 }
 
@@ -41,7 +40,7 @@ export async function CheckUser(userId: string) {
     })
     if(res){
         //Do Nothing
-        console.log(`This is res : ${res.createdAt}`);
+        console.log(`This is res : ${res.createdAt.getDate()}`);
     }else{
         await NewUser();
     }
