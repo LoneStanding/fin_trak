@@ -2,8 +2,12 @@
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
 import { sql } from "drizzle-orm";
+import { int } from "drizzle-orm/mysql-core";
 import {
+  decimal,
   index,
+  integer,
+  PgInteger,
   pgTableCreator,
   serial,
   timestamp,
@@ -18,17 +22,45 @@ import {
  */
 export const createTable = pgTableCreator((name) => `fin_trak_${name}`);
 
-export const posts = createTable(
-  "post",
+export const users = createTable(
+  "users",
   {
-    id: serial("id").primaryKey(),
-    name: varchar("name", { length: 256 }),
+    uId: varchar("id").primaryKey(),
+    username: varchar("name", { length: 256 }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: timestamp("updatedAt", { withTimezone: true }),
   },
   (example) => ({
-    nameIndex: index("name_idx").on(example.name),
+  })
+);
+
+export const transactions = createTable(
+  "transactions",
+  {
+    tNo: serial("id").primaryKey(),
+    userId: varchar('user_id').notNull().references(() => users.uId),
+    amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }),
+  },
+  (example) => ({
+    // Optional: Define indexes or constraints here
+  })
+);
+
+export const logging = createTable(
+  "logs",
+  {
+    lNo: serial("id").primaryKey(),
+    logId: varchar('log_id').notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull(),
+  },
+  (example) => ({
+    // Optional: Define indexes or constraints here
   })
 );
