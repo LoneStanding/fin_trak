@@ -1,4 +1,4 @@
-import { auth, currentUser, redirectToSignIn } from "@clerk/nextjs/server";
+import { auth, currentUser} from "@clerk/nextjs/server";
 import LogLogIn, { CheckUser } from "~/server/queries";
 
 export default async function Dashboard() {

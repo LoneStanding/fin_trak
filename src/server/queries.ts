@@ -2,27 +2,35 @@ import { auth, currentUser } from '@clerk/nextjs/server';
 import 'server-only';
 import { db } from "~/server/db";
 import { logging, users } from './db/schema';
-import { SQLWrapper } from 'drizzle-orm';
-import { PgInteger } from 'drizzle-orm/pg-core';
 
 export default async function LogLogIn(){
-    const user =  auth();
+    const {userId} =  auth();
+
+    if (!userId) {
+        throw new Error('Unauthorized');
+    }
     
     //if(!user.userId) throw new Error('UnAuthorized');
 
     await db.insert(logging).values({
-        logId: String(user.userId),
+        logId: String(userId),
       });
 }
 
 export async function NewUser(){
 
     const {userId} = auth();
+
+    if (!userId) {
+        throw new Error('Unauthorized');
+    }
+    
     const user = await currentUser();
+    const username = user?.username || "NULL";
     
     await db.insert(users).values({
         uId: String(userId),
-        username: String(user?.username),
+        username: String(username),
     });
 }
 
@@ -32,7 +40,7 @@ export async function CheckUser(userId: string) {
     })
     if(res){
         //Do Nothing
-        console.log(`This is res : ${res}`);
+        console.log(`This is res : ${res.createdAt}`);
     }else{
         NewUser();
     }
