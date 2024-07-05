@@ -22,7 +22,7 @@ export default function AllTransactions() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const data: Transaction[] = await response.json();
+        const data: Transaction[] = await response.json() ?? [];
         setTransactions(data);
       } catch (error) {
         if (error instanceof Error) {
@@ -39,7 +39,7 @@ export default function AllTransactions() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const data: boolean = await response.json();
+        const data: boolean = await response.json() ?? false;
         if (data) {
           alert("You have exceeded your budget");
         }

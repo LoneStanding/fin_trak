@@ -18,7 +18,7 @@ export default async function Dashboard() {
   return (
     <main className="flex flex-col justify-start bg-rose_toupe min-h-screen items-center">
       <div className="mt-3 w-full bg-platinum p-4 rounded-2xl flex items-center">
-        <h1 className="text-6xl">{user?.username}'s Dashboard</h1>
+        <h1 className="text-6xl">{`${user?.username}'s`} Dashboard</h1>
       </div>
       <div className="mt-5 bg-transparent h-99 w-full overflow-hidden rounded-2xl mr-2 ml-2 flex justify-center gap-8">
         <div className="w-1/2 h-full bg-platinum rounded-2xl flex flex-col justify-center items-center">

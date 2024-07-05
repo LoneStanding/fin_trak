@@ -25,7 +25,7 @@ export default function AddTransactionForm() {
         setCategory('Food');
         setAmount('');
       } else {
-        const errorData: { error: string } = await response.json();
+        const errorData: { error: string } = await response.json() ?? "";
         alert('Failed to add transaction: ' + errorData.error);
       }
     } catch (error) {

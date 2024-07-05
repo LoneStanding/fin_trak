@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { SetBudget, UpdateBudget } from '~/server/queries';
 
 export async function POST(request: NextRequest) {
-  const { amount } = await request.json();
+  const { amount } = await request.json() ?? 999;
 
   try {
     await SetBudget(Number(amount));

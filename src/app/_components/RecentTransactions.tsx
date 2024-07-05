@@ -22,7 +22,7 @@ export default function RecentTransactions() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const data: Transaction[] = await response.json();
+        const data: Transaction[] = await response.json() ?? [];
         setTransactions(data);
       } catch (error) {
         if (error instanceof Error) {
