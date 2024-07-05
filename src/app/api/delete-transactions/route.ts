@@ -10,8 +10,7 @@ export async function POST(request: NextRequest) {
   let tNos: number[];
 
   try {
-    // eslint-disable-next-line no-unsafe-assignment
-    const body: DeleteRequestBody = await request.json();
+    const body: DeleteRequestBody = await request.json(); // eslint-disable-line
     tNos = body.tNos;
   } catch (error) {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });

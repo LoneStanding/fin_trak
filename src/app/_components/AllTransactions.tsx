@@ -22,8 +22,7 @@ export default function AllTransactions() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        // eslint-disable-next-line no-unsafe-assignment
-        const data: Transaction[] = await response.json();
+        const data: Transaction[] = await response.json(); // eslint-disable-line
         setTransactions(data);
       } catch (error) {
         if (error instanceof Error) {
@@ -40,8 +39,7 @@ export default function AllTransactions() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        // eslint-disable-next-line no-unsafe-assignment
-        const data: boolean = await response.json();
+        const data: boolean = await response.json(); // eslint-disable-line
         if (data) {
           alert("You have exceeded your budget");
         }

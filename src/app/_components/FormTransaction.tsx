@@ -25,8 +25,7 @@ export default function AddTransactionForm() {
         setCategory('Food');
         setAmount('');
       } else {
-        // eslint-disable-next-line no-unsafe-assignment
-        const errorData: { error: string } = await response.json();
+        const errorData: { error: string } = await response.json(); // eslint-disable-line
         alert('Failed to add transaction: ' + errorData.error);
       }
     } catch (error) {
