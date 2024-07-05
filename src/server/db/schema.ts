@@ -41,10 +41,22 @@ export const transactions = createTable(
     tNo: serial("id").primaryKey(),
     userId: varchar('user_id').notNull().references(() => users.uId),
     amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+    vendor: varchar("vendor", {length:256}).default("NULL"),
+    category: varchar("category", {length:256}).default("NULL"),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: timestamp("updated_at", { withTimezone: true }),
+  },
+  (example) => ({
+    // Optional: Define indexes or constraints here
+  })
+);
+
+export const budget = createTable(
+  "budget",
+  {
+    BId: varchar('user_id').notNull().references(() => users.uId).primaryKey(),
+    budget: decimal("budget", { precision: 10, scale: 2 }).default("0"),
   },
   (example) => ({
     // Optional: Define indexes or constraints here

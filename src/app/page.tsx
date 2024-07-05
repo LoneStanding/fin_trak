@@ -3,6 +3,7 @@ import { auth, currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
 import Image from 'next/image'
 import { usePathname } from "next/navigation";
+import LogLogIn from "~/server/queries";
 
 export default async function HomePage() {
 
@@ -10,6 +11,7 @@ export default async function HomePage() {
   if (userId) {
     // Query DB for user specific information or display assets only to signed in users
     console.log(`User ${userId}`);
+    await LogLogIn();
   }
 
   // Get the Backend API User object when you need access to the user's information

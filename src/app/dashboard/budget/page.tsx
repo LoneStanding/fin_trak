@@ -1,10 +1,12 @@
 import { auth, currentUser} from "@clerk/nextjs/server";
 import Link from "next/link";
-import LogLogIn, { CheckBudget, CheckUser } from "~/server/queries";
-import Tabs from "../_components/Tabs";
-import RecentTransactions from "../_components/RecentTransactions";
-import PieChart from "../_components/PieChart";
-import DummyPieChart from "../_components/DummyChart";
+import LogLogIn, { CheckUser } from "~/server/queries";
+import Tabs from "../../_components/Tabs";
+import RecentTransactions from "../../_components/RecentTransactions";
+import PieChart from "../../_components/PieChart";
+import DummyPieChart from "../../_components/DummyChart";
+import { FormEvent } from "react";
+import SetBudget from "~/app/_components/SetBudget";
 
 export default async function Dashboard() {
 
@@ -16,7 +18,6 @@ export default async function Dashboard() {
     }else{
         auth().redirectToSignIn();
     }
-
     // Get the Backend API User object when you need access to the user's information
     const user = await currentUser()
 
@@ -24,7 +25,7 @@ export default async function Dashboard() {
     return(
     <main className="flex flex-col justify-start bg-rose_toupe min-h-screen items-center">
         <div className="mt-3 w-full bg-platinum p-4 rounded-2xl flex items-center">
-          <h1 className="text-6xl">{user?.username}'s Dashboard</h1>
+          <h1 className="text-6xl">Dashboard</h1>
         </div>
         <div className="mt-5 bg-transparent h-99 w-full overflow-hidden rounded-2xl mr-2 ml-2 flex justify-center gap-8">
           <div className="w-1/2 h-full bg-platinum rounded-2xl flex flex-col justify-center items-center">
@@ -32,7 +33,7 @@ export default async function Dashboard() {
           </div>
           <div className="w-1/2 justify-start h-full bg-rose_toupe rounded-2xl overflow-hidden flex flex-col">
             <div className="flex bg-rose_toupe gap-3 justify-between items-center">
-              <Link href={`/dashboard`} className="flex bg-platinum justify-center items-center w-1/3 p-2 rounded-xl">
+            <Link href={`/dashboard`} className="flex bg-platinum justify-center items-center w-1/3 p-2 rounded-xl">
                 <Tabs id="folder.png"/>
               </Link>
               <Link href={`/dashboard/budget`} className="flex bg-platinum justify-center items-center w-1/3 p-2 rounded-xl">
@@ -42,24 +43,19 @@ export default async function Dashboard() {
                 <Tabs id="delete.png"/>
               </Link>
             </div>
-            <div className=" border-t-4 border-black mt-1 bg-platinum flex-grow rounded-2xl">
+            <div className="border-t-4 border-black mt-1 bg-platinum flex-grow rounded-2xl">
               <div className="flex border-b-4 border-black justify-between pb-2">
                 <div className="">
-                  <h2 className="text-3xl ml-1 mt-1">Recent Transactions</h2>
+                  <h2 className="text-3xl ml-1 mt-1">Set Budget</h2>
                 </div>
-                <Link href={`/AddTransaction/${user?.username}`} >
-                  <img src="/plus.png" alt="Add" className=" mt-1 mr-1 w-10"/>
-                </Link>
               </div>
-              <div className="h-3/4 border-b-2 border-black">
-                <RecentTransactions/>
+              <div className="h-3/4">
+                <SetBudget />
               </div>
-              <Link href={`/dashboard/${user?.username}/all-transactions`}>
-                <h2 className="text-center mt-2">See More...</h2>
-              </Link>
             </div>
           </div>
         </div>
     </main>
+    
     )
 }

@@ -17,7 +17,9 @@ export default {
       },
       width:{
         wmiddlebox: '1148px',
-        98:'',
+        99:'30rem',
+        100: '40rem',
+        percent95: '95%',
       },
       height:{
         hmiddlebox: '765px',
