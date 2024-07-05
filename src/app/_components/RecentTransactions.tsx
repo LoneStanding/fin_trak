@@ -16,7 +16,7 @@ export default function RecentTransactions() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchTransactions() {
+    const fetchTransactions = async () => {
       try {
         const response = await fetch('/api/get-recent-transaction');
         if (!response.ok) {
@@ -31,9 +31,9 @@ export default function RecentTransactions() {
           setError('An unknown error occurred');
         }
       }
-    }
+    };
 
-    fetchTransactions();
+    void fetchTransactions();
   }, []);
 
   if (error) {
@@ -44,15 +44,15 @@ export default function RecentTransactions() {
     <div>
       <ul>
         {transactions.map((transaction) => (
-        <div key={transaction.tNo} className="transaction border-b-2 border-black flex justify-between pb-1">
+          <div key={transaction.tNo} className="transaction border-b-2 border-black flex justify-between pb-1">
             <div className='ml-1'>
-                <p className='text-xl block'>{transaction.vendor}</p>
-                <p className='text-sm block'>{new Date(transaction.createdAt).toLocaleString()}</p>
+              <p className='text-xl block'>{transaction.vendor}</p>
+              <p className='text-sm block'>{new Date(transaction.createdAt).toLocaleString()}</p>
             </div>
             <div className='mr-1 flex items-center'>
-                <p className='text-2xl'>Rs.{transaction.amount}</p>
+              <p className='text-2xl'>Rs.{transaction.amount}</p>
             </div>
-        </div>
+          </div>
         ))}
       </ul>
     </div>

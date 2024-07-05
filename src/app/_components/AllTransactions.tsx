@@ -31,14 +31,17 @@ export default function AllTransactions() {
           setError('An unknown error occurred');
         }
       }
-      try{
+    }
+
+    async function fetchBudget() {
+      try {
         const response = await fetch('/api/get-budget');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data: boolean = await response.json();
-        if(data){
-          alert("Exceeded your budget")
+        if (data) {
+          alert("You have exceeded your budget");
         }
       } catch (error) {
         if (error instanceof Error) {
@@ -49,7 +52,8 @@ export default function AllTransactions() {
       }
     }
 
-    fetchTransactions();
+    void fetchTransactions();
+    void fetchBudget();
   }, []);
 
   if (error) {
@@ -60,15 +64,15 @@ export default function AllTransactions() {
     <div>
       <ul>
         {transactions.map((transaction) => (
-        <div key={transaction.tNo} className="transaction border-b-2 border-black flex justify-between pb-1">
+          <div key={transaction.tNo} className="transaction border-b-2 border-black flex justify-between pb-1">
             <div className='ml-1'>
-                <p className='text-2xl block'>{transaction.vendor}</p>
-                <p className='text-md block'>{new Date(transaction.createdAt).toLocaleString()}</p>
+              <p className='text-2xl block'>{transaction.vendor}</p>
+              <p className='text-md block'>{new Date(transaction.createdAt).toLocaleString()}</p>
             </div>
             <div className='mr-1 flex items-center'>
-                <p className='text-3xl'>Rs.{transaction.amount}</p>
+              <p className='text-3xl'>Rs.{transaction.amount}</p>
             </div>
-        </div>
+          </div>
         ))}
       </ul>
     </div>

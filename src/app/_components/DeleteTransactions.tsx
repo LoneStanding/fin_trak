@@ -23,7 +23,7 @@ export default function DeleteTransactions() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const data: Transaction[] = await response.json();
+        const data = (await response.json()) as Transaction[];
         setTransactions(data);
       } catch (error) {
         if (error instanceof Error) {
@@ -34,7 +34,7 @@ export default function DeleteTransactions() {
       }
     }
 
-    fetchTransactions();
+    void fetchTransactions();
   }, []);
 
   const handleSelect = (tNo: number) => {
@@ -93,15 +93,15 @@ export default function DeleteTransactions() {
                   <p className='text-md block'>{new Date(transaction.createdAt).toLocaleString()}</p>
                 </div>
                 <div className='flex'>
-                <input className='w-4 ml-5 bg-platinum'
-                  type="checkbox"
-                  checked={selectedTransactions.has(transaction.tNo)}
-                  onChange={() => handleSelect(transaction.tNo)}
-                />
-                <div className='mr-1 flex items-center'>
-                  <p className='text-3xl'>Rs.{transaction.amount}</p>
+                  <input className='w-4 ml-5 bg-platinum'
+                    type="checkbox"
+                    checked={selectedTransactions.has(transaction.tNo)}
+                    onChange={() => handleSelect(transaction.tNo)}
+                  />
+                  <div className='mr-1 flex items-center'>
+                    <p className='text-3xl'>Rs.{transaction.amount}</p>
+                  </div>
                 </div>
-              </div>
               </div>
             ))}
           </ul>
