@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   let tNos: number[];
 
   try {
-    // eslint-disable-next-line no-use-before-define
+    // eslint-disable-next-line no-unsafe-assignment
     const body: DeleteRequestBody = await request.json();
     tNos = body.tNos;
   } catch (error) {

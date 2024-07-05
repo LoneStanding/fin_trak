@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
   let transactionData: TransactionData;
 
   try {
-    // eslint-disable-next-line no-use-before-define
+    // eslint-disable-next-line no-unsafe-assignment
     transactionData = await request.json();
   } catch (error) {
     return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });

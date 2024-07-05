@@ -7,7 +7,7 @@ interface RequestData {
   }
 
 export async function POST(request: NextRequest) {
-    // eslint-disable-next-line no-use-before-define
+    // eslint-disable-next-line no-unsafe-assignment
     const { amount }: RequestData = await request.json();
 
   try {

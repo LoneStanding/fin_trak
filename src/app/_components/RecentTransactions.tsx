@@ -22,7 +22,7 @@ export default function RecentTransactions() {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        // eslint-disable-next-line no-use-before-define
+        // eslint-disable-next-line no-unsafe-assignment
         const data: Transaction[] = await response.json();
         setTransactions(data);
       } catch (error) {
