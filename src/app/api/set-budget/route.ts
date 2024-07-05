@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { SetBudget, UpdateBudget } from '~/server/queries';
 
+interface RequestData {
+    amount: string;
+    // Add other properties if there are more expected fields
+  }
+
 export async function POST(request: NextRequest) {
-  const { amount } = await request.json() ?? 999;
+    const { amount }: RequestData = await request.json();
 
   try {
     await SetBudget(Number(amount));
