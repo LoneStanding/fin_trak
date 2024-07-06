@@ -7,7 +7,7 @@ import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 
 interface BarData {
-    id: string;
+    "id": string;
     value: number;
 }
 
