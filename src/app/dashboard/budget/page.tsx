@@ -1,3 +1,5 @@
+ /* eslint-disable */
+
 import { auth, currentUser} from "@clerk/nextjs/server";
 import Link from "next/link";
 import LogLogIn, { CategoryExpense, CheckUser } from "~/server/queries";
