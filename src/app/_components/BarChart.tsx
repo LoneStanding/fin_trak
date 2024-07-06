@@ -17,7 +17,7 @@ interface MyResponsiveBarProps {
 
 const MyResponsiveBar: React.FC<MyResponsiveBarProps> = ({ data2 }) => ( /* eslint-disable-line */
     <ResponsiveBar
-        data={data2} /* eslint-disable-line */
+        data={data2}
         keys={['expense']}
         indexBy="id"
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
