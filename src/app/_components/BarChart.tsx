@@ -1,4 +1,5 @@
 // MyResponsiveBar.tsx
+/* eslint-disable */
 "use client";
 
 import React from 'react';
@@ -119,3 +120,4 @@ const MyResponsiveBar: React.FC<MyResponsiveBarProps> = ({ data }) => (
 );
 
 export default MyResponsiveBar;
+/* eslint-enable */

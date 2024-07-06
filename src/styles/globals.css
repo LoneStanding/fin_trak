@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+#vendor{
+    height: 2.0rem;
+    padding-left: 0.5rem;
+}
+
+#amount{
+    height: 2.0rem;
+    padding-left: 0.5rem;
+}
+
+#categories{
+    height: 2.0rem;
+    padding-left: 0.5rem;
+}

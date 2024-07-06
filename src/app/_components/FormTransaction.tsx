@@ -39,37 +39,37 @@ export default function AddTransactionForm() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md">
-      <div className="mb-2 block">
-        <Label htmlFor="categories" value="Select the category" />
+      <div className="mb-1 block ">
+        <Label htmlFor="categories" className="text-lg" value="Select the category" />
       </div>
-      <Select id="categories" required value={category} onChange={(e) => setCategory(e.target.value)}>
+      <Select className="mb-2" id="categories" required value={category} onChange={(e) => setCategory(e.target.value)}>
         <option>Food</option>
         <option>Groceries</option>
         <option>Travel</option>
         <option>Entertainment</option>
         <option>Miscellaneous</option>
       </Select>
-      <div className="mb-2 block">
-        <Label htmlFor="amount" value="Amount" />
+      <div className="mb-1 block">
+        <Label htmlFor="amount" className="text-lg" value="Amount" />
       </div>
-      <TextInput
+      <TextInput className="text-6xl mb-2"
         id="amount"
-        placeholder="Eg: 500"
+        placeholder="  Eg: 500"
         required
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
       />
-      <div className="mb-2 block">
-        <Label htmlFor="vendor" value="Vendor" />
+      <div className="mb-1 block">
+        <Label htmlFor="vendor" className="text-lg" value="Vendor" />
       </div>
-      <TextInput
+      <TextInput className="mb-2"
         id="vendor"
         placeholder="Shop 8"
         required
         value={vendor}
         onChange={(e) => setVendor(e.target.value)}
       />
-      <button type="submit" className="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+      <button type="submit" className="mt-4 bg-shamock_green text-white p-2 rounded">
         Submit
       </button>
     </form>
