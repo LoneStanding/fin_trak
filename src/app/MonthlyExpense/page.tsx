@@ -30,7 +30,7 @@ const daysOfMonth = Array.from({ length: 30 }, (_, index) => ({
 // Merge daysOfMonth with transactiondata
 const mergedData = [
   ...daysOfMonth,
-  ...transactiondata.map((item: { id: { getDate: () => { (): any; new(): any; toString: { (): any; new(): any; }; }; }; value: any; }) => ({
+  ...transactiondata.map((item: { id: any ; value: any; }) => ({
     id: item.id.getDate().toString(), // Get day of the month as a string
     expense: Number(item.value)
   }))
