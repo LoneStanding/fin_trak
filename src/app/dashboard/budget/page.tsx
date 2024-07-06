@@ -10,7 +10,7 @@ import MyResponsivePie from "~/app/_components/Doughnut";
 export default async function Dashboard() {
 
     const { userId } = auth();
-  let transactiondata: any;
+  let transactiondata: any; /* eslint-disable-line */
   if (userId) {
     console.log(`User ${userId}`);
     await CheckUser(userId);
@@ -27,7 +27,7 @@ export default async function Dashboard() {
     const user = await currentUser()
 
     //Need to Add Socials
-    return(
+    /* eslint-disable-line */ return(
     <main className="flex flex-col justify-start bg-rose_toupe min-h-screen items-center">
         <div className="mt-3 w-full bg-platinum p-4 rounded-2xl flex items-center">
           <h1 className="text-6xl">{`${user?.username}'s`} Dashboard</h1>

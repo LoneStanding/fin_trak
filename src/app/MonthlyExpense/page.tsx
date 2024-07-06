@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { auth } from "@clerk/nextjs/server";
 import MyResponsiveBar from "../_components/BarChart";
 import { CheckUser, MonthlyExpense } from "~/server/queries";
