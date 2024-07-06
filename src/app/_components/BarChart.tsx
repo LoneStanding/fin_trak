@@ -1,5 +1,6 @@
-// MyResponsiveBar.tsx
 /* eslint-disable */
+
+// MyResponsiveBar.tsx
 "use client";
 
 import React from 'react';
@@ -115,9 +116,8 @@ const MyResponsiveBar: React.FC<MyResponsiveBarProps> = ({ data }) => (
         isInteractive={false}
         role="application"
         ariaLabel="Nivo bar chart demo"
-        barAriaLabel={(e) => `${e.id}: ${e.formattedValue} in country: ${e.indexValue}`}
+        barAriaLabel={(e: { id: any; formattedValue: any; indexValue: any; }) => `${e.id}: ${e.formattedValue} in country: ${e.indexValue}`}
     />
 );
 
 export default MyResponsiveBar;
-/* eslint-enable */
