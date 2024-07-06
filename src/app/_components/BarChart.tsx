@@ -12,7 +12,7 @@ interface BarData {
 }
 
 type MyResponsiveBarProps = {
-    data2: BarData[];
+    [data2 : string]: BarData[];
 }
 
 const MyResponsiveBar: React.FC<MyResponsiveBarProps> = ({ data2 }) => ( /* eslint-disable-line */
