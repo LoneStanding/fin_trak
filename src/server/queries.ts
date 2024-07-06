@@ -80,7 +80,7 @@ export async function getRecentTransactions(userId:string) {
     try {
       const lastTransactions = await db.query.transactions.findMany({
         orderBy: (model, { desc }) => desc(model.createdAt),
-        limit: 7, // Limit to the last 7 transactions
+        limit: 5, // Limit to the last 7 transactions
         where:(moode, {eq}) => eq(moode.userId, userId),
       });
   

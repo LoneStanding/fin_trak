@@ -7,17 +7,17 @@ import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 
 interface BarData {
-    "id": string;
-    value: number;
+    [id: string]: string;
+    value: string;
 }
 
-type MyResponsiveBarProps = {
-    [data2 : string]: BarData[];
+interface MyResponsiveBarProps {
+    data: BarData[];
 }
 
-const MyResponsiveBar: React.FC<MyResponsiveBarProps> = ({ data2 }) => ( /* eslint-disable-line */
+const MyResponsiveBar: React.FC<MyResponsiveBarProps> = ({ data }) => ( /* eslint-disable-line */
     <ResponsiveBar
-        data={data2}
+        data={data}
         keys={['expense']}
         indexBy="id"
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}

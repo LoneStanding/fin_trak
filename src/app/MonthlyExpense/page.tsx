@@ -51,7 +51,7 @@ console.log(transformedData);
     <main className="flex flex-col justify-center items-center bg-rose_toupe w-full min-h-screen">
       <div className="border-t-4 border-black bg-platinum flex-grow w-percent95 rounded-2xl mt-3 flex flex-col justify-center">
         <div className="h-100 w-full">
-        <MyResponsiveBar data2={transformedData}/>
+        <MyResponsiveBar data={transformedData}/>
 </div>
       </div>
     </main>
