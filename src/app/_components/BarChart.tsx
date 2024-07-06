@@ -11,7 +11,7 @@ interface BarData {
     value: number;
 }
 
-interface MyResponsiveBarProps {
+type MyResponsiveBarProps = {
     data2: BarData[];
 }
 
