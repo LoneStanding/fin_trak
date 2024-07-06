@@ -156,3 +156,29 @@ export async function CheckBudget(userId: string){
     }
     return true;
 }
+
+export async function CategoryExpense(userId: string){
+    try{
+        const expense = await db.select({id: transactions.category, value: sum(transactions.amount) })
+                                .from(transactions)
+                                .where(eq(transactions.userId, userId)).
+                                groupBy(transactions.category);
+        return expense;
+    }catch (error) {
+        console.error('Error getting PIE', error);
+        throw new Error('Could not GET PIE');
+      }
+}
+
+export async function MonthlyExpense(userId: string){
+    try{
+        const expense = await db.select({id: transactions.createdAt, value: sum(transactions.amount) })
+                                .from(transactions)
+                                .where(eq(transactions.userId, userId)).
+                                groupBy(transactions.createdAt);
+        return expense;
+    }catch (error) {
+        console.error('Error getting BAR', error);
+        throw new Error('Could not GET BAR');
+      }
+}

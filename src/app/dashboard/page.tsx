@@ -1,17 +1,28 @@
 import { auth, currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
-import { CheckUser } from "~/server/queries";
+import { CategoryExpense, CheckUser } from "~/server/queries";
 import RecentTransactions from "../_components/RecentTransactions";
 import Tabs from "../_components/Tabs";
+import DoughnutChart from "../_components/Doughnut";
+import MyResponsivePie from "../_components/Doughnut";
 
 export default async function Dashboard() {
   const { userId } = auth();
+  let transactiondata: any;
   if (userId) {
     console.log(`User ${userId}`);
     await CheckUser(userId);
+    transactiondata = await CategoryExpense(userId)
+  if(transactiondata){
+    console.log(transactiondata);
+  }else{
+    console.log("NO DATA")
+  }
   } else {
     auth().redirectToSignIn();
   }
+
+  //const piedata = 
 
   const user = await currentUser();
 
@@ -22,7 +33,8 @@ export default async function Dashboard() {
       </div>
       <div className="mt-5 bg-transparent h-99 w-full overflow-hidden rounded-2xl mr-2 ml-2 flex justify-center gap-8">
         <div className="w-1/2 h-full bg-platinum rounded-2xl flex flex-col justify-center items-center">
-          <h1 className="text-6xl">PIECHART</h1>
+          <Link href={`/MonthlyExpense`}><h1 className="text-5xl mt-3">EXPENCES<span className="text-sm ml-1">click to see more...</span></h1></Link>
+          <MyResponsivePie data={transactiondata}/>
         </div>
         <div className="w-1/2 justify-start h-full bg-rose_toupe rounded-2xl overflow-hidden flex flex-col">
           <div className="flex bg-rose_toupe gap-3 justify-between items-center">

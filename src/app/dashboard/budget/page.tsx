@@ -1,23 +1,28 @@
 import { auth, currentUser} from "@clerk/nextjs/server";
 import Link from "next/link";
-import LogLogIn, { CheckUser } from "~/server/queries";
+import LogLogIn, { CategoryExpense, CheckUser } from "~/server/queries";
 import Tabs from "../../_components/Tabs";
 import RecentTransactions from "../../_components/RecentTransactions";
-import PieChart from "../../_components/PieChart";
-import DummyPieChart from "../../_components/DummyChart";
 import { FormEvent } from "react";
 import SetBudget from "~/app/_components/SetBudget";
+import MyResponsivePie from "~/app/_components/Doughnut";
 
 export default async function Dashboard() {
 
     const { userId } = auth();
-    if (userId) {
-    // Query DB for user specific information or display assets only to signed in users
-        console.log(`User ${userId}`);
-        await CheckUser(userId);
-    }else{
-        auth().redirectToSignIn();
-    }
+  let transactiondata: any;
+  if (userId) {
+    console.log(`User ${userId}`);
+    await CheckUser(userId);
+    transactiondata = await CategoryExpense(userId)
+  if(transactiondata){
+    console.log(transactiondata);
+  }else{
+    console.log("NO DATA")
+  }
+  } else {
+    auth().redirectToSignIn();
+  }
     // Get the Backend API User object when you need access to the user's information
     const user = await currentUser()
 
@@ -25,11 +30,12 @@ export default async function Dashboard() {
     return(
     <main className="flex flex-col justify-start bg-rose_toupe min-h-screen items-center">
         <div className="mt-3 w-full bg-platinum p-4 rounded-2xl flex items-center">
-          <h1 className="text-6xl">Dashboard</h1>
+          <h1 className="text-6xl">{`${user?.username}'s`} Dashboard</h1>
         </div>
         <div className="mt-5 bg-transparent h-99 w-full overflow-hidden rounded-2xl mr-2 ml-2 flex justify-center gap-8">
           <div className="w-1/2 h-full bg-platinum rounded-2xl flex flex-col justify-center items-center">
-            <h1 className="text-6xl">PIECHART</h1>
+          <Link href={`/MonthlyExpense`}><h1 className="text-5xl mt-3">EXPENCES<span className="text-sm ml-1">click to see more...</span></h1></Link>
+          <MyResponsivePie data={transactiondata}/>
           </div>
           <div className="w-1/2 justify-start h-full bg-rose_toupe rounded-2xl overflow-hidden flex flex-col">
             <div className="flex bg-rose_toupe gap-3 justify-between items-center">
