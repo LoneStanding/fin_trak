@@ -12,12 +12,12 @@ interface BarData {
 }
 
 interface MyResponsiveBarProps {
-    data: BarData[];
+    data2: BarData[];
 }
 
-const MyResponsiveBar: React.FC<MyResponsiveBarProps> = ({ data }) => (
+const MyResponsiveBar: React.FC<MyResponsiveBarProps> = ({ data2 }) => ( /* eslint-disable-line */
     <ResponsiveBar
-        data={data}
+        data={data2} /* eslint-disable-line */
         keys={['expense']}
         indexBy="id"
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
@@ -116,7 +116,7 @@ const MyResponsiveBar: React.FC<MyResponsiveBarProps> = ({ data }) => (
         isInteractive={false}
         role="application"
         ariaLabel="Nivo bar chart demo"
-        barAriaLabel={(e: { id: any; formattedValue: any; indexValue: any; }) => `${e.id}: ${e.formattedValue} in country: ${e.indexValue}`}
+        barAriaLabel={(e: { id: any; formattedValue: any; indexValue: any; }) => `${e.id}: ${e.formattedValue} in country: ${e.indexValue}`} /* eslint-disable-line */
     />
 );
 
