@@ -25,7 +25,7 @@ const MonthlyChart = () => {
     const fetchData = async () => {
       try {
         const response = await fetch('/api/get-monthly-data/');
-        const transactionData: Transaction[] = await response.json();
+        const transactionData: Transaction[] = await response.json(); /* eslint-disable-line */
 
         // Parse the id string to Date object
         const parsedTransactionData = transactionData.map(item => ({
@@ -74,7 +74,7 @@ const MonthlyChart = () => {
       }
     };
 
-    fetchData();
+    void fetchData();
   }, []);
 
   return (
