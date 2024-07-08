@@ -8,6 +8,8 @@ import Tabs from "../_components/Tabs";
 import DoughnutChart from "../_components/Doughnut";
 import MyResponsivePie from "../_components/Doughnut";
 
+export const dynamic = "force-dynamic";
+
 export default async function Dashboard() {
   const { userId } = auth();
   let transactiondata: any;

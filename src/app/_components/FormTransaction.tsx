@@ -2,11 +2,14 @@
 
 import { Label, Select, TextInput } from "flowbite-react";
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function AddTransactionForm() {
   const [vendor, setVendor] = useState("");
   const [category, setCategory] = useState("Food");
   const [amount, setAmount] = useState("");
+
+  const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -24,6 +27,7 @@ export default function AddTransactionForm() {
         setVendor('');
         setCategory('Food');
         setAmount('');
+        router.refresh();
       } else {
         const errorData: { error: string } = await response.json(); // eslint-disable-line
         alert('Failed to add transaction: ' + errorData.error);

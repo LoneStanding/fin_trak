@@ -10,6 +10,8 @@ import SetBudget from "~/app/_components/SetBudget";
 import MyResponsivePie from "~/app/_components/Doughnut";
 import AddTransactionForm from "~/app/_components/FormTransaction";
 
+export const dynamic = "force-dynamic";
+
 export default async function Dashboard() {
 
     const { userId } = auth();
